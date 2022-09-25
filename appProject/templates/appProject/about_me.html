@@ -1,0 +1,58 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+        <header class="head-page">
+            <img id="abs" class="img-fluid" src="{% static 'admin/assets/about_me.jpg' %}" alt="Hats"/>
+            <div class="dark_bg"></div>
+            <div class="container px-4 px-lg-5 h-100 position-relative">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end position-text-h1">
+                        <h1 class="text-white text-center font-weight-bold">Welcome to my website</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white mb-5 position-text-p">Through this site I want to prove my skills in programming and I want to help you discover me!</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Carousel -->
+        <div class="slideshow-container mb-5">
+
+           <div class="mySlides fade">
+                <div>
+                    <img class="d-block circle"  src="{% static 'admin/assets/eu.jpg' %}" alt="Me"/>
+                </div>
+           </div>
+           <div class="mySlides fade">
+                <div>
+                    <img class="d-block circle"  src="{% static 'admin/assets/myy.jpg' %}" alt="Me"/>
+                </div>
+           </div>
+           <div class="mySlides fade">
+               <div>
+                    <img class="d-block circle"  src="{% static 'admin/assets/my.jpg' %}" alt="Me"/>
+               </div>
+           </div>
+
+       </div>
+
+        <div class="aboutDescription mb-5">
+            <img class="bgAbout"  src="{% static 'admin/assets/eu.jpg' %}" alt="Me"/>
+            <div class="coverBgAbout">
+                <div class="container text-white fs-4 mt-4">
+                    <p class="font-size-about">My name is Blajan Razvan, I am 23 years old, I am Romanian and I want to become a successful person.<br>
+                        I am hungry to grow, to develop, I am hungry to enrich my skills.<br>In the last year I have rediscovered myself and found my way in life.
+                        I found that I like to learn, this fulfills me and makes me proud of myself.<br>
+                        I believe that when a person stops growing, that person is doomed to failure, and I do not accept being in that category.<br>
+                        I hate capping, I hate wasting my time, I don't want to be in an environment that doesn't force me to grow up,
+                        I run away from such things and I think that this thing will bring me many benefits.<br>
+                        This would be a brief characterization of me. I hope I managed to arouse interest and I hope you will contact me to collaborate.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

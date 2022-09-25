@@ -1,0 +1,67 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <div class="backgroundDetail">
+            <img src="{{ detail.product_image.url }}" class="card-img-top backgroundImg" alt="backgroundDetail">
+            <div class="backgroundCover"></div>
+            <div style="width: 100%; height: 100%">
+                <img src="{{ detail.product_image.url }}" class="card-img-top productImg" alt="product">
+                <div class="cardView customize">
+                    <br>
+                    <div class="text-center">
+                        <h5 class="card-title fs-2 mt-3">{{ detail.product_name }}</h5><br>
+                        <p class="card-text">{{ detail.product_description }}</p>
+                        <h6 class="card-subtitle mb-2">Price {{ detail.product_price }}.<div style="font-size: 13px; display: inline-block">00</div> $</h6>
+                    </div>
+                    <form method="POST" action="{% url 'like_post_pant' detail.id %}" style="margin-top: 8px; margin-left: 187px">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                                <a href="{% url 'products_pants' %}" class="btn btn-outline-light btn-back-super">
+                                    Back
+                                </a>
+                                <a href="{% url 'update_pants' detail.id %}" class="btn btn-outline-light btn-update-super">
+                                    Update
+                                </a>
+                                {% if liked %}
+                                    <button class="btn btn-danger position-btn-like" type="submit" name="post_id_pant" value="{{ detail.id }}">
+                                        <i class="fa-regular fa-heart fs-5"></i>
+                                    </button> {{ total_likes }}
+                                {% else %}
+                                    <button class="btn btn-outline-danger position-btn-like" type="submit" name="post_id_pant" value="{{ detail.id }}">
+                                        <i class="fa-regular fa-heart fs-5"></i>
+                                    </button> {{ total_likes }}
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'products_pants' %}" class="btn btn-outline-light btn-back">
+                                    Back
+                                </a>
+                                {% if liked %}
+                                    <button class="btn btn-danger position-btn-like" type="submit" name="post_id_pant" value="{{ detail.id }}">
+                                        <i class="fa-regular fa-heart fs-5"></i>
+                                    </button> {{ total_likes }}
+                                {% else %}
+                                    <button class="btn btn-outline-danger position-btn-like" type="submit" name="post_id_pant" value="{{ detail.id }}">
+                                        <i class="fa-regular fa-heart fs-5"></i>
+                                    </button> {{ total_likes }}
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'products_pants' %}" class="btn btn-outline-light btn-back-super">
+                                Back
+                            </a>
+                            <br><p class="must-login">Must to <a a href="{% url 'login' %}">login</a></p>
+                        {% endif %}
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+
+

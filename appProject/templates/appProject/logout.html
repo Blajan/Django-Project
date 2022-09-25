@@ -1,0 +1,20 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <header class="head-logout">
+            <img id="absolute-logout" class="img-fluid" src="{% static 'admin/assets/clothes1.jpg' %}" alt="Logout"/>
+            <div class="dark-bg-logout"></div>
+            <div class="container px-4 px-lg-5 h-100 position-relative">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white text-center font-weight-bold position-logout-h1">Thanks you for view</h1>
+                    </div>
+                    <div class="col-lg-8 align-self-baseline position-logout-p">
+                        <p class="text-white-75 m-4 fs-3">You have a nice day!</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}

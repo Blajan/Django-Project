@@ -1,0 +1,21 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="backgroundAddForm">
+        <img id="abs" style="margin-top: 5%" class="img-fluid" src="{% static 'admin/assets/hats1.jpg' %}" alt="Sneakers"/>
+        <div class="backgroundCover"></div>
+        <div class="backgroundAddForm text-white">
+            <form class="form-add" method="POST" enctype="multipart/form-data">
+                <h2 class="mb-5 text-center">Add new product</h2>
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <center>
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </center>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

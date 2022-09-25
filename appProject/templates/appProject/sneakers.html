@@ -1,0 +1,104 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+        <header class="head-page">
+            <img id="abs" class="img-fluid" src="{% static 'admin/assets/shoes.jpg' %}" alt="Sneakers"/>
+            <div class="dark_bg"></div>
+            <div class="container px-4 px-lg-5 h-100 position-relative">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end position-text-product-h1">
+                        <h1 class="text-white text-center font-weight-bold">Find your favorite pair of sneakers</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5 position-text-product-p">Here you can find your favorite pair of sneakers. Get your favorite sneakers and go show them to your friends</p>
+                        <center>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input class="form-control width-search" type="search" name="found" placeholder="Search you favorite sneakers">
+                            </form>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+            <div class="container">
+                <br><a href="{% url 'home' %}" class="text-secondary" style="text-decoration: none">&laquo Home</a><br>
+
+                {% if found %}
+                    <br><h2 class="text-center fs-4">You searched "{{ found }}"</h2>
+                {% else %}
+                {% endif %}
+
+                <br>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <div class="button_add bg-success">
+                            <a href="{% url 'add_sneakers' %}" title="Add product"><i class="fa-solid fa-plus text-white icon_position"></i></a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                <!-- Cards -->
+                <div class="row justify-content-center mb-5">
+                    {% for post in products %}
+                        <div class="col-sm-3 mt-5">
+                            <div class="card card-dimension">
+                                <div class="inner">
+                                    <img src="{{ post.product_image.url }}" class="card-img-top img-size" alt="product">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title text-center mt-auto">{{ post.product_name }}</h4><br>
+                                    <h5>Price {{ post.product_price }}.<div style="font-size: 13px; display: inline-block">00</div> $</h5>
+                                    <p class="card-text">{{ post.product_description }}</p>
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'detail_sneakers' post.id %}" type="submit" class="btn btn-outline-success btn_width mt-auto">More info</a>
+                                        <a href="{% url 'delete_sneakers' post.id %}" type="submit" class="btn btn-outline-danger btn_width mt-auto">Delete</a>
+                                    {% else %}
+                                        <div class="text-center">
+                                            <a href="{% url 'detail_sneakers' post.id %}" type="submit" class="btn btn-outline-success btn_width mt-auto">More info</a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation product" class="position-pagination">
+                <ul class="pagination mb-5">
+                    {% if products.has_previous %}
+                        <li class="page-item">
+                            <a href="{% url 'products_sneakers'%}?page={{ products.previous_page_number }}" class="page-link text-secondary">Previous</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link text-secondary">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item">
+                        {% for page in pages %}
+                            <a class="page-link text-secondary" style="display: inline-block" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                        {% endfor %}
+                    </li>
+
+                    {% if products.has_next %}
+                        <li class="page-item">
+                            <a href="{% url 'products_sneakers'%}?page={{ products.next_page_number }}" class="page-link text-secondary">Next</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link text-secondary">Next</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+
+
+{% endblock %}

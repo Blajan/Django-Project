@@ -1,0 +1,27 @@
+{% extends "appProject/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="backgroundUpdate">
+        <img id="abs" style="margin-top: 5%" class="img-fluid" src="{% static 'admin/assets/football_sneakers1.jpg' %}" alt="Football_sneakers"/>
+        <div class="backgroundCover"></div>
+        <div class="display-product text-white">
+            <br><h2 class="text-center">Update product</h2>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="mt-5" style="margin-left: 15%">Enter updated name:</label>
+                <input type="text" class="form-control input_form" name="name" value="{{ post.product_name }}">
+                <label class="mt-4" style="margin-left: 15%">Enter updated description:</label>
+                <input type="text" class="form-control input_form" name="description" value="{{ post.product_description }}">
+                <label class="mt-4" style="margin-left: 15%">Enter updated price:</label>
+                <input type="number" class="form-control input_form" name="price" value="{{ post.product_price }}">
+                <label class="mt-4" style="margin-left: 15%">Choose your new image:</label>
+                <input type="file" class="form-control insert-image" name="image">
+                <button type="submit" class="btn btn-success mt-5 button-update">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

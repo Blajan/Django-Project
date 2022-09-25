@@ -1,0 +1,59 @@
+{% extends "appProject/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+  <section class="bg-secondary background-login position-login"><br>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card mt-4" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="{% static 'admin/assets/login.jpg' %}"
+                  alt="login form" class="img-fluid mt-5" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+
+                  {% for message in messages %}
+                      <div class="alert alert-danger" role="alert">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+                  <br>
+                  <form method="POST">
+                    {% csrf_token %}
+
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                      <span>
+                        <i class="fa-solid fa-right-to-bracket m-2" style="font-size: 25px"></i>Sign into your account
+                      </span>
+                    </h5>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label">Username</label>
+                      <input type="text" class="form-control form-control-lg" name="username"/>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" >Password</label>
+                      <input type="password" class="form-control form-control-lg" name="password"/>
+                    </div>
+
+                    <div class="text-center mt-3 mb-4">
+                      <button class="btn btn-secondary" type="submit">Login</button>
+                    </div>
+
+                    <p class="mt-5 pb-lg-2">Don't have an account? <a href="{% url 'register_user' %}" style="color: #393f81;">Register here</a></p>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
