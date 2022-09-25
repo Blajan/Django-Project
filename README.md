@@ -1,5 +1,5 @@
 # Django project
-[Website Django](http://portofoliuit.ro/mySite)
+[Website Django](https://django-project-by-blj.herokuapp.com/)
 
 
 ## Despre proiect
